@@ -1,0 +1,18 @@
+version=3
+# It is not recommended use fakeupstream. Please investigate more.
+# Origin url: https://github.com/iarna/unique-filename
+# Take a look at https://wiki.debian.org/debian/watch/
+# See also fakeupstream: http://anonscm.debian.org/viewvc/qa/trunk/cgi-bin/fakeupstream.cgi?view=markup
+opts=\
+repacksuffix=+ds,\
+repack,compression=xz,\
+dversionmangle=s/\+(debian|dfsg|ds|deb)(\.\d+)?$//,\
+filenamemangle=s/.*=// \
+ https://qa.debian.org/cgi-bin/fakeupstream.cgi?upstream=npmjs/unique-filename .*=unique-filename-(\d.*)\.(?:tgz|tar\.(?:gz|bz2|xz)) debian
+
+opts=\
+component=unique-slug,\
+repack,compression=xz,\
+dversionmangle=auto,\
+filenamemangle=s/.*\/v?([\d\.-]+)\.tar\.gz/node-unique-slug-$1.tar.gz/ \
+ https://github.com/iarna/unique-slug/tags?after=2.0.2 .*/archive/v?(2(?:.[\d\.]+)?).tar.gz ignore
